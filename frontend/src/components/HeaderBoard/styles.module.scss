@@ -1,0 +1,40 @@
+.header__container {
+  height: 95px;
+  background-color: var(--blue-100);
+
+  & button {
+    // width: 150px;
+    color: var(--white-000);
+    margin-left: 20px;
+  }
+
+  & svg {
+    font-size: 32px;
+    margin-right: 20px;
+    color: var(--yellow-800);
+  }
+
+  &_perfil {
+    display: flex;
+    justify-content: flex-end;
+
+    & img {
+      width: 60px;
+      height: 60px;
+      // background-color: yellow;
+    }
+
+    & svg {
+      font-size: 32px;
+      color: var(--white-200);
+      margin-left: 20px;
+    }
+
+    & button {
+      // width: 150px;
+      color: var(--white-000);
+      flex-direction: row-reverse;
+      margin-left: 20px;
+    }
+  }
+}

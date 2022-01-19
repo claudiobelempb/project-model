@@ -1,0 +1,11 @@
+.header__container {
+  height: 212px;
+  background-color: var(--blue-500);
+  padding-top: 32px;
+
+  & button {
+    background-color: var(--blue-600);
+    color: var(--white-100);
+    border-radius: 5px;
+  }
+}
