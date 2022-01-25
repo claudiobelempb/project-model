@@ -1,44 +1,50 @@
-package br.com.surb.surb.modules.employee.jpa.entities;
+package br.com.surb.surb.modules.course.infra.entities;
 
-import br.com.surb.surb.modules.department.infra.jpa.entities.Department;
+import br.com.surb.surb.modules.offer.infra.entities.Offer;
 import br.com.surb.surb.shared.enums.TypeStatus;
 
 import javax.persistence.*;
-import java.io.Serial;
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(name = "tb_employee")
-public class Employee implements Serializable {
+@Table(name = "tb_course")
+public class Course implements Serializable {
 
-  @Serial
   private static final long serialVersionUID = 1L;
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
   private String name;
-  private String email;
+  private String imgUri;
+  private String imgGrayUri;
   @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
   private Instant createdAt;
+
   @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
   private Instant updatedAt;
+
   private TypeStatus status;
 
-  @ManyToOne
-  @JoinColumn(name = "department_id")
-  private Department department;
+  /*
+  associação muitos para um
+  criar um coleção de offers
+  * */
+  @OneToMany(mappedBy = "course")
+  private final List<Offer> offers = new ArrayList<>();
 
-  public Employee(){}
+  public Course(){}
 
-  public Employee(Long id, String name, String email, Department department, Instant createdAt, Instant updatedAt,
-                  TypeStatus status) {
+  public Course(Long id, String name, String imgUri, String imgGrayUri, Instant createdAt, Instant updatedAt,
+                TypeStatus status) {
     this.id = id;
     this.name = name;
-    this.email = email;
-    this.department = department;
+    this.imgUri = imgUri;
+    this.imgGrayUri = imgGrayUri;
     this.createdAt = createdAt;
     this.updatedAt = updatedAt;
     this.status = status;
@@ -60,12 +66,20 @@ public class Employee implements Serializable {
     this.name = name;
   }
 
-  public String getEmail() {
-    return email;
+  public String getImgUri() {
+    return imgUri;
   }
 
-  public void setEmail(String email) {
-    this.email = email;
+  public void setImgUri(String imgUri) {
+    this.imgUri = imgUri;
+  }
+
+  public String getImgGrayUri() {
+    return imgGrayUri;
+  }
+
+  public void setImgGrayUri(String imgGrayUri) {
+    this.imgGrayUri = imgGrayUri;
   }
 
   public Instant getCreatedAt() {
@@ -92,12 +106,8 @@ public class Employee implements Serializable {
     this.status = status;
   }
 
-  public Department getDepartment() {
-    return department;
-  }
-
-  public void setDepartment(Department department) {
-    this.department = department;
+  public List<Offer> getOffers() {
+    return offers;
   }
 
   @PrePersist
@@ -115,25 +125,12 @@ public class Employee implements Serializable {
   public boolean equals(Object o) {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
-    Employee employee = (Employee) o;
-    return Objects.equals(id, employee.id);
+    Course course = (Course) o;
+    return Objects.equals(id, course.id);
   }
 
   @Override
   public int hashCode() {
     return Objects.hash(id);
-  }
-
-  @Override
-  public String toString() {
-    return "Employee{" +
-      "id=" + id +
-      ", name='" + name + '\'' +
-      ", email='" + email + '\'' +
-      ", createdAt=" + createdAt +
-      ", updatedAt=" + updatedAt +
-      ", status=" + status +
-      ", department=" + department +
-      '}';
   }
 }

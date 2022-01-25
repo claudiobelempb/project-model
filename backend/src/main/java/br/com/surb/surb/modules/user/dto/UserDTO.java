@@ -4,7 +4,7 @@ import static br.com.surb.surb.shared.constants.MessageConstants.REQUIRED_EMAIL;
 import static br.com.surb.surb.shared.constants.MessageConstants.REQUIRED_FIELD;
 
 import br.com.surb.surb.modules.role.dto.RoleDTO;
-import br.com.surb.surb.modules.user.infra.jps.entities.User;
+import br.com.surb.surb.modules.user.infra.jpa.entities.User;
 import br.com.surb.surb.shared.enums.TypeStatus;
 
 import javax.validation.constraints.Email;

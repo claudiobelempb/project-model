@@ -2,7 +2,7 @@ package br.com.surb.surb.modules.score.infra.entities;
 
 
 import br.com.surb.surb.modules.movie.infra.jpa.entities.Movie;
-import br.com.surb.surb.modules.user.infra.jps.entities.User;
+import br.com.surb.surb.modules.user.infra.jpa.entities.User;
 import br.com.surb.surb.shared.enums.TypeStatus;
 
 import javax.persistence.*;

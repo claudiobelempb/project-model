@@ -4,14 +4,8 @@ import static br.com.surb.surb.shared.constants.ValidatorConstants.*;
 import static java.util.Objects.isNull;
 import static org.apache.logging.log4j.util.Strings.isBlank;
 
-import br.com.surb.surb.modules.user.infra.jps.entities.User;
-import br.com.surb.surb.shared.exeptions.controllers.FieldMessage;
 import br.com.surb.surb.shared.exeptions.services.InvalidRequestException;
 import br.com.surb.surb.shared.validator.ValidationErrors;
-import org.springframework.stereotype.Repository;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public final class ValidatorUtils {
 

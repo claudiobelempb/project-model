@@ -3,7 +3,7 @@ package br.com.surb.surb.modules.user.useCases.UserDelete;
 import static br.com.surb.surb.shared.constants.ExceptionConstants.ENTITY_NOT_FOUND;
 import static br.com.surb.surb.shared.constants.ExceptionConstants.INTEGRITY_VIOLATION;
 
-import br.com.surb.surb.modules.user.infra.jps.repositories.UserRepository;
+import br.com.surb.surb.modules.user.infra.jpa.repositories.UserRepository;
 import br.com.surb.surb.shared.exeptions.services.AppNotFoundException;
 import br.com.surb.surb.shared.exeptions.services.DataBaseException;
 import org.springframework.beans.factory.annotation.Autowired;

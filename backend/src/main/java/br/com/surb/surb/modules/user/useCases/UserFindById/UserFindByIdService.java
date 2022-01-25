@@ -3,10 +3,8 @@ package br.com.surb.surb.modules.user.useCases.UserFindById;
 import static br.com.surb.surb.shared.constants.ExceptionConstants.*;
 
 import br.com.surb.surb.modules.user.dto.UserDTO;
-import br.com.surb.surb.modules.user.infra.jps.entities.User;
-import br.com.surb.surb.modules.user.infra.jps.repositories.UserRepository;
-import br.com.surb.surb.shared.constants.ExceptionConstants;
-import br.com.surb.surb.shared.constants.MessageConstants;
+import br.com.surb.surb.modules.user.infra.jpa.entities.User;
+import br.com.surb.surb.modules.user.infra.jpa.repositories.UserRepository;
 import br.com.surb.surb.shared.exeptions.services.AppNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

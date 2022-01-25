@@ -1,8 +1,8 @@
 package br.com.surb.surb.modules.user.useCases.UserStatus;
 
 import br.com.surb.surb.modules.user.dto.UserUpdateDTO;
-import br.com.surb.surb.modules.user.infra.jps.entities.User;
-import br.com.surb.surb.modules.user.infra.jps.repositories.UserRepository;
+import br.com.surb.surb.modules.user.infra.jpa.entities.User;
+import br.com.surb.surb.modules.user.infra.jpa.repositories.UserRepository;
 import br.com.surb.surb.shared.constants.ExceptionConstants;
 import br.com.surb.surb.shared.exeptions.services.AppNotFoundException;
 import org.springframework.stereotype.Service;

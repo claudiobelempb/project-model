@@ -1,7 +1,7 @@
 package br.com.surb.surb.modules.user.useCases.UserFindByEmail;
 
-import br.com.surb.surb.modules.user.infra.jps.entities.User;
-import br.com.surb.surb.modules.user.infra.jps.repositories.UserRepository;
+import br.com.surb.surb.modules.user.infra.jpa.entities.User;
+import br.com.surb.surb.modules.user.infra.jpa.repositories.UserRepository;
 import br.com.surb.surb.shared.constants.ExceptionConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -33,6 +33,7 @@ public class DepartmentDTO implements Serializable {
     createdAt = department.getCreatedAt();
     updatedAt = department.getUpdatedAt();
     status = department.getStatus();
+
   }
 
   public Long getId() {

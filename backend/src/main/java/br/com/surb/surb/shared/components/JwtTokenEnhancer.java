@@ -1,7 +1,7 @@
 package br.com.surb.surb.shared.components;
 
-import br.com.surb.surb.modules.user.infra.jps.entities.User;
-import br.com.surb.surb.modules.user.infra.jps.repositories.UserRepository;
+import br.com.surb.surb.modules.user.infra.jpa.entities.User;
+import br.com.surb.surb.modules.user.infra.jpa.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.common.DefaultOAuth2AccessToken;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;

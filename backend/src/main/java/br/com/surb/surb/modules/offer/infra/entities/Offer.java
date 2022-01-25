@@ -1,47 +1,62 @@
-package br.com.surb.surb.modules.employee.jpa.entities;
+package br.com.surb.surb.modules.offer.infra.entities;
 
-import br.com.surb.surb.modules.department.infra.jpa.entities.Department;
+import br.com.surb.surb.modules.course.infra.entities.Course;
 import br.com.surb.surb.shared.enums.TypeStatus;
 
 import javax.persistence.*;
-import java.io.Serial;
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.Objects;
 
 @Entity
-@Table(name = "tb_employee")
-public class Employee implements Serializable {
+@Table(name = "tb_offer")
+public class Offer implements Serializable {
 
-  @Serial
   private static final long serialVersionUID = 1L;
+
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
-  private String name;
-  private String email;
+
+  private String edition;
+
+  @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
+  private Instant startMoment;
+
+  @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
+  private Instant endMoment;
+
   @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
   private Instant createdAt;
+
   @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
   private Instant updatedAt;
+
   private TypeStatus status;
 
+  /*
+  * associação muitos para um
+  * criar um chave estrangeira course_id
+  * */
   @ManyToOne
-  @JoinColumn(name = "department_id")
-  private Department department;
+  @JoinColumn(name = "course_id")
+  private Course course;
 
-  public Employee(){}
 
-  public Employee(Long id, String name, String email, Department department, Instant createdAt, Instant updatedAt,
-                  TypeStatus status) {
+  public Offer(){}
+
+  public Offer(Long id, String edition, Instant startMoment, Instant endMoment, Instant createdAt, Instant updatedAt,
+               TypeStatus status,
+               Course course) {
     this.id = id;
-    this.name = name;
-    this.email = email;
-    this.department = department;
+    this.edition = edition;
+    this.startMoment = startMoment;
+    this.endMoment = endMoment;
     this.createdAt = createdAt;
     this.updatedAt = updatedAt;
     this.status = status;
+    this.course = course;
   }
 
   public Long getId() {
@@ -52,20 +67,12 @@ public class Employee implements Serializable {
     this.id = id;
   }
 
-  public String getName() {
-    return name;
+  public String getEdition() {
+    return edition;
   }
 
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  public String getEmail() {
-    return email;
-  }
-
-  public void setEmail(String email) {
-    this.email = email;
+  public void setEdition(String edition) {
+    this.edition = edition;
   }
 
   public Instant getCreatedAt() {
@@ -92,12 +99,28 @@ public class Employee implements Serializable {
     this.status = status;
   }
 
-  public Department getDepartment() {
-    return department;
+  public Course getCourse() {
+    return course;
   }
 
-  public void setDepartment(Department department) {
-    this.department = department;
+  public void setCourse(Course course) {
+    this.course = course;
+  }
+
+  public Instant getStartMoment() {
+    return startMoment;
+  }
+
+  public void setStartMoment(Instant startMoment) {
+    this.startMoment = startMoment;
+  }
+
+  public Instant getEndMoment() {
+    return endMoment;
+  }
+
+  public void setEndMoment(Instant endMoment) {
+    this.endMoment = endMoment;
   }
 
   @PrePersist
@@ -115,25 +138,12 @@ public class Employee implements Serializable {
   public boolean equals(Object o) {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
-    Employee employee = (Employee) o;
-    return Objects.equals(id, employee.id);
+    Offer offer = (Offer) o;
+    return Objects.equals(id, offer.id);
   }
 
   @Override
   public int hashCode() {
     return Objects.hash(id);
-  }
-
-  @Override
-  public String toString() {
-    return "Employee{" +
-      "id=" + id +
-      ", name='" + name + '\'' +
-      ", email='" + email + '\'' +
-      ", createdAt=" + createdAt +
-      ", updatedAt=" + updatedAt +
-      ", status=" + status +
-      ", department=" + department +
-      '}';
   }
 }

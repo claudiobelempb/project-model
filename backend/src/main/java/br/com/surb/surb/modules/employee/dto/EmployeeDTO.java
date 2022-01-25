@@ -18,10 +18,11 @@ public class EmployeeDTO implements Serializable {
   private Instant createdAt;
   private Instant updatedAt;
   private TypeStatus status;
+  private Long departmentId;
 
   public EmployeeDTO(){}
 
-  public EmployeeDTO(Long id, String name, String email, Instant createdAt, Instant updatedAt,
+  public EmployeeDTO(Long id, String name, String email, Long departmentId, Instant createdAt, Instant updatedAt,
                      TypeStatus status) {
     this.id = id;
     this.name = name;
@@ -29,6 +30,7 @@ public class EmployeeDTO implements Serializable {
     this.createdAt = createdAt;
     this.updatedAt = updatedAt;
     this.status = status;
+    this.departmentId = departmentId;
   }
 
   public EmployeeDTO(Employee employee){
@@ -38,6 +40,7 @@ public class EmployeeDTO implements Serializable {
     createdAt = employee.getCreatedAt();
     updatedAt = employee.getUpdatedAt();
     status = employee.getStatus();
+    departmentId = employee.getDepartment().getId();
   }
 
   public Long getId() {
@@ -86,5 +89,13 @@ public class EmployeeDTO implements Serializable {
 
   public void setStatus(TypeStatus status) {
     this.status = status;
+  }
+
+  public Long getDepartmentId() {
+    return departmentId;
+  }
+
+  public void setDepartmentId(Long departmentId) {
+    this.departmentId = departmentId;
   }
 }

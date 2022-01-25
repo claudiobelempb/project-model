@@ -3,8 +3,8 @@ package br.com.surb.surb.modules.user.useCases.UserCreate.validation;
 import static br.com.surb.surb.shared.constants.ValidatorConstants.REQUIRED_EMAIL_EXIST;
 
 import br.com.surb.surb.modules.user.dto.UserCreateDTO;
-import br.com.surb.surb.modules.user.infra.jps.entities.User;
-import br.com.surb.surb.modules.user.infra.jps.repositories.UserRepository;
+import br.com.surb.surb.modules.user.infra.jpa.entities.User;
+import br.com.surb.surb.modules.user.infra.jpa.repositories.UserRepository;
 import br.com.surb.surb.shared.exeptions.controllers.FieldMessage;
 
 import javax.validation.ConstraintValidator;

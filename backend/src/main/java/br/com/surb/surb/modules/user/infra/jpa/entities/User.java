@@ -1,4 +1,4 @@
-package br.com.surb.surb.modules.user.infra.jps.entities;
+package br.com.surb.surb.modules.user.infra.jpa.entities;
 
 import br.com.surb.surb.modules.role.infra.jpa.entities.Role;
 import br.com.surb.surb.shared.enums.TypeStatus;
@@ -42,7 +42,10 @@ public class User implements UserDetails, Serializable {
 
   private TypeStatus status;
 
-  /*Obj dessa form vem junto uma list de roles*/
+  /*Obj dessa form vem junto uma list de roles
+  * associação muitos para muitos com a tb_role
+  * usar sempre o set<>
+  */
   @ManyToMany(fetch = FetchType.EAGER)
   @JoinTable(
     name = "tb_user_role",

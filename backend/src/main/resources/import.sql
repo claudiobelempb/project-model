@@ -7,12 +7,17 @@ INSERT INTO tb_user (first_name, last_name, email, password, created_at, status)
 
 --tb_role
 INSERT INTO tb_role (authority, created_at, status) VALUES ('ROLE_OPERATOR', now(), 0);
+INSERT INTO tb_role (authority, created_at, status) VALUES ('ROLE_STUDENT', now(), 0);
+INSERT INTO tb_role (authority, created_at, status) VALUES ('ROLE_INSTRUCTOR', now(), 0);
 INSERT INTO tb_role (authority, created_at, status) VALUES ('ROLE_ADMIN', now(), 0);
 
 --tb_user_role
 INSERT INTO tb_user_role (user_id, role_id) VALUES (1, 1);
+INSERT INTO tb_user_role (user_id, role_id) VALUES (1, 2);
 INSERT INTO tb_user_role (user_id, role_id) VALUES (2, 1);
 INSERT INTO tb_user_role (user_id, role_id) VALUES (2, 2);
+INSERT INTO tb_user_role (user_id, role_id) VALUES (2, 3);
+INSERT INTO tb_user_role (user_id, role_id) VALUES (2, 4);
 
 --Insert tb_category
 INSERT INTO tb_category (name, created_at, status) VALUES ('Books', now(), 0);
@@ -139,4 +144,11 @@ INSERT INTO tb_employee(name, email, department_id, created_at, status) VALUES (
 INSERT INTO tb_employee(name, email, department_id, created_at, status) VALUES ('Andressa', 'andressa@gmail.com', 2, NOW(), 0);
 INSERT INTO tb_employee(name, email, department_id, created_at, status) VALUES ('Meire', 'meire@gmail.com', 3, NOW(), 0);
 INSERT INTO tb_employee(name, email, department_id, created_at, status) VALUES ('Carol', 'carol@gmail.com', 1, NOW(), 0);
+
+--tb_course
+INSERT INTO tb_course (name, img_Uri, img_gray_uri, created_at, status) VALUES ('Bootcamp HTML', 'https://cdn.pixabay.com/photo/2018/03/22/10/55/training-course-3250007_1280.jpg', 'https://upload.wikimedia.org/wikipedia/commons/1/1f/Switch-course-book-grey.svg', NOW(), 0);
+
+--tb_offer
+INSERT INTO tb_offer (edition, start_Moment, end_Moment, course_id, created_at, status) VALUES ('1.0', '2020-11-20T03:00:00Z', '2021-11-20T03:00:00Z', 1, NOW(), 0);
+INSERT INTO tb_offer (edition, start_Moment, end_Moment, course_id, created_at, status) VALUES ('2.0', '2020-12-20T03:00:00Z', '2021-12-20T03:00:00Z', 1, NOW(), 0);
 

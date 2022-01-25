@@ -108,4 +108,15 @@ public class Department implements Serializable {
     return Objects.hash(id);
   }
 
+  @Override
+  public String toString() {
+    return "Department{" +
+      "id=" + id +
+      ", name='" + name + '\'' +
+      ", createdAt=" + createdAt +
+      ", updatedAt=" + updatedAt +
+      ", status=" + status +
+      ", employees=" + employees +
+      '}';
+  }
 }

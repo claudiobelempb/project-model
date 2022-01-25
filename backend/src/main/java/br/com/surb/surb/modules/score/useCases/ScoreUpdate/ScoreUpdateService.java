@@ -6,14 +6,10 @@ import br.com.surb.surb.modules.movie.infra.jpa.repositories.MovieRepository;
 import br.com.surb.surb.modules.score.dto.ScoreDTO;
 import br.com.surb.surb.modules.score.infra.entities.Score;
 import br.com.surb.surb.modules.score.infra.repositories.ScoreRepository;
-import br.com.surb.surb.modules.user.infra.jps.entities.User;
-import br.com.surb.surb.modules.user.infra.jps.repositories.UserRepository;
-import br.com.surb.surb.modules.user.useCases.UserCreate.UserCreateService;
-import br.com.surb.surb.shared.exeptions.services.AppNotFoundException;
+import br.com.surb.surb.modules.user.infra.jpa.entities.User;
+import br.com.surb.surb.modules.user.infra.jpa.repositories.UserRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import javax.persistence.EntityNotFoundException;
 
 @Service
 public class ScoreUpdateService {
