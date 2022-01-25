@@ -1,20 +1,16 @@
-package br.com.surb.surb.modules.Resource.infra.entities;
+package br.com.surb.surb.modules.section.infra.entities;
 
-import br.com.surb.surb.modules.offer.infra.entities.Offer;
-import br.com.surb.surb.modules.section.infra.entities.Section;
-import br.com.surb.surb.shared.enums.TypeResource;
+import br.com.surb.surb.modules.Resource.infra.entities.Resource;
 import br.com.surb.surb.shared.enums.TypeStatus;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.Instant;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(name = "tb_resource")
-public class Resource implements Serializable {
+@Table(name = "tb_section")
+public class Section implements Serializable {
 
   private static final long serialVersionUID = 1L;
 
@@ -23,10 +19,8 @@ public class Resource implements Serializable {
   private Long id;
   private String title;
   private String description;
-  private String position;
+  private Integer position;
   private String imgUri;
-  private TypeResource type;
-  private String externalLink;
 
   @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
   private Instant createdAt;
@@ -38,33 +32,36 @@ public class Resource implements Serializable {
 
   /*
    * associação muitos para um
-   * criar um chave estrangeira course_id
+   * criar um chave estrangeira resource_id
    * */
   @ManyToOne
-  @JoinColumn(name = "offer_id")
-  private Offer offer;
+  @JoinColumn(name = "resource_id")
+  private Resource resource;
 
   /*
-  associação muitos para um
-  criar um coleção de sections
-  * */
-  @OneToMany(mappedBy = "resource")
-  private final List<Section> sections = new ArrayList<>();
+   * alto associação com section
+   * definição recursiva
+   * associação uni derecional
+   * criar um chave estrangeira prerequisite_id
+   * */
+  @ManyToOne
+  @JoinColumn(name = "prerequisite_id")
+  private Section section;
 
-  public Resource(){}
+  public Section(){}
 
-  public Resource(Long id, String title, String description, String position, String imgUri, TypeResource type,
-                  String externalLink, Instant createdAt, Instant updatedAt, TypeStatus status) {
+  public Section(Long id, String title, String description, Integer position, String imgUri, Instant createdAt,
+                 Instant updatedAt, TypeStatus status, Resource resource, Section section) {
     this.id = id;
     this.title = title;
     this.description = description;
     this.position = position;
     this.imgUri = imgUri;
-    this.type = type;
-    this.externalLink = externalLink;
     this.createdAt = createdAt;
     this.updatedAt = updatedAt;
     this.status = status;
+    this.resource = resource;
+    this.section = section;
   }
 
   public Long getId() {
@@ -91,11 +88,11 @@ public class Resource implements Serializable {
     this.description = description;
   }
 
-  public String getPosition() {
+  public Integer getPosition() {
     return position;
   }
 
-  public void setPosition(String position) {
+  public void setPosition(Integer position) {
     this.position = position;
   }
 
@@ -105,22 +102,6 @@ public class Resource implements Serializable {
 
   public void setImgUri(String imgUri) {
     this.imgUri = imgUri;
-  }
-
-  public TypeResource getType() {
-    return type;
-  }
-
-  public void setType(TypeResource type) {
-    this.type = type;
-  }
-
-  public String getExternalLink() {
-    return externalLink;
-  }
-
-  public void setExternalLink(String externalLink) {
-    this.externalLink = externalLink;
   }
 
   public Instant getCreatedAt() {
@@ -147,35 +128,28 @@ public class Resource implements Serializable {
     this.status = status;
   }
 
-  public Offer getOffer() {
-    return offer;
+  public Resource getResource() {
+    return resource;
   }
 
-  public void setOffer(Offer offer) {
-    this.offer = offer;
+  public void setResource(Resource resource) {
+    this.resource = resource;
   }
 
-  public List<Section> getSections() {
-    return sections;
+  public Section getSection() {
+    return section;
   }
 
-  @PrePersist
-  public void prePersist(){
-    createdAt = Instant.now();
-    status = TypeStatus.ENABLED;
-  }
-
-  @PreUpdate
-  public void preUpdate(){
-    updatedAt = Instant.now();
+  public void setSection(Section section) {
+    this.section = section;
   }
 
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
-    Resource resource = (Resource) o;
-    return Objects.equals(id, resource.id);
+    Section section = (Section) o;
+    return Objects.equals(id, section.id);
   }
 
   @Override
