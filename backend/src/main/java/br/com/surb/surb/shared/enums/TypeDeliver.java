@@ -1,6 +1,6 @@
 package br.com.surb.surb.shared.enums;
 
-public enum DeliverStatusEnum {
+public enum TypeDeliver {
 
   PENDING,
   ACCEPTED,

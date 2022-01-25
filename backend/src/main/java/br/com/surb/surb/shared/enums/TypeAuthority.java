@@ -1,6 +1,6 @@
 package br.com.surb.surb.shared.enums;
 
-public enum AuthorityType {
+public enum TypeAuthority {
 
   ROLE_ADMIN,
   ROLE_OPERATOR,

@@ -1,11 +1,14 @@
 package br.com.surb.surb.modules.offer.infra.entities;
 
+import br.com.surb.surb.modules.Resource.infra.entities.Resource;
 import br.com.surb.surb.modules.course.infra.entities.Course;
 import br.com.surb.surb.shared.enums.TypeStatus;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -42,6 +45,9 @@ public class Offer implements Serializable {
   @ManyToOne
   @JoinColumn(name = "course_id")
   private Course course;
+
+  @OneToMany(mappedBy = "offer")
+  private final List<Resource> resources = new ArrayList<>();
 
 
   public Offer(){}
@@ -121,6 +127,10 @@ public class Offer implements Serializable {
 
   public void setEndMoment(Instant endMoment) {
     this.endMoment = endMoment;
+  }
+
+  public List<Resource> getResources() {
+    return resources;
   }
 
   @PrePersist
