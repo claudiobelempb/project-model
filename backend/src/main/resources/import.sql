@@ -163,5 +163,5 @@ INSERT INTO tb_section (title, description, position, img_Uri, resource_id, prer
 INSERT INTO tb_section (title, description, position, img_Uri, resource_id, prerequisite_id, created_at, status) VALUES ('Capítulo 3', 'Neste capítulo vamos finalizar', 3, 'https://cdn.pixabay.com/photo/2018/03/22/10/55/training-course-3250007_1280.jpg', 1, 2, NOW(), 0);
 
 --tb_enrolment
-INSERT INTO tb_enrollment (user_id, offer_id, enroll_Moment, refund_Moment, available, only_Update, created_at, status) VALUES (1, 1, '2020-11-20T13:00:00Z', null, 'true', 'false', NOW(), 0);
-INSERT INTO tb_enrollment (user_id, offer_id, enroll_Moment, refund_Moment, available, only_Update, created_at, status) VALUES (2, 1, '2020-11-20T13:00:00Z', null, 'true', 'false', NOW(), 0);
+INSERT INTO tb_enrollment (user_id, offer_id, enroll_moment, refund_moment, available, only_update, created_at, status) VALUES (1, 1, '2020-11-20T13:00:00Z', null, 'true', 'false', NOW(), 'true');
+INSERT INTO tb_enrollment (user_id, offer_id, enroll_moment, refund_moment, available, only_update, created_at, status) VALUES (2, 1, '2020-11-20T13:00:00Z', null, 'true', 'false', NOW(), 'true');

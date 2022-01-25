@@ -1,8 +1,9 @@
 package br.com.surb.surb.modules.enrollment.infra.entities;
 
+import static java.lang.Boolean.TRUE;
+
 import br.com.surb.surb.modules.offer.infra.entities.Offer;
 import br.com.surb.surb.modules.user.infra.jpa.entities.User;
-import br.com.surb.surb.shared.enums.TypeStatus;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -27,7 +28,7 @@ public class Enrollment implements Serializable {
   @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
   private Instant updatedAt;
 
-  private TypeStatus status;
+  private boolean status;
 
   public Enrollment(){}
 
@@ -102,18 +103,18 @@ public class Enrollment implements Serializable {
     this.updatedAt = updatedAt;
   }
 
-  public TypeStatus getStatus() {
+  public boolean isStatus() {
     return status;
   }
 
-  public void setStatus(TypeStatus status) {
+  public void setStatus(boolean status) {
     this.status = status;
   }
 
   @PrePersist
   public void prePersist(){
     createdAt = Instant.now();
-    status = TypeStatus.ENABLED;
+    status = TRUE;
   }
 
   @PreUpdate

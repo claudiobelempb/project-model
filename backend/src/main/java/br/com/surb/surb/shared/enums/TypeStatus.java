@@ -7,4 +7,14 @@ public enum TypeStatus {
   TRUE,
   FALSE
 
+//  private final int num;
+//
+//  TypeStatus(int num){
+//    this.num = num;
+//  }
+//
+//  public int getNum(){
+//    return num;
+//  }
+
 }
