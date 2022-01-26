@@ -1,6 +1,6 @@
 package br.com.surb.surb.modules.offer.infra.entities;
 
-import br.com.surb.surb.modules.Resource.infra.entities.Resource;
+import br.com.surb.surb.modules.resource.infra.entities.Resource;
 import br.com.surb.surb.modules.course.infra.entities.Course;
 import br.com.surb.surb.shared.enums.TypeStatus;
 

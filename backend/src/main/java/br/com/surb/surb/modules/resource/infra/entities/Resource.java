@@ -1,4 +1,4 @@
-package br.com.surb.surb.modules.Resource.infra.entities;
+package br.com.surb.surb.modules.resource.infra.entities;
 
 import br.com.surb.surb.modules.offer.infra.entities.Offer;
 import br.com.surb.surb.modules.section.infra.entities.Section;

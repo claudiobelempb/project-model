@@ -1,11 +1,14 @@
 package br.com.surb.surb.modules.section.infra.entities;
 
-import br.com.surb.surb.modules.Resource.infra.entities.Resource;
+import br.com.surb.surb.modules.lesson.infra.entities.Lesson;
+import br.com.surb.surb.modules.resource.infra.entities.Resource;
 import br.com.surb.surb.shared.enums.TypeStatus;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -47,6 +50,9 @@ public class Section implements Serializable {
   @ManyToOne
   @JoinColumn(name = "prerequisite_id")
   private Section section;
+
+  @OneToMany(mappedBy = "section")
+  private final List<Lesson> lessons = new ArrayList<>();
 
   public Section(){}
 
@@ -142,6 +148,10 @@ public class Section implements Serializable {
 
   public void setSection(Section section) {
     this.section = section;
+  }
+
+  public List<Lesson> getLessons() {
+    return lessons;
   }
 
   @Override
