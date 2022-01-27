@@ -2,12 +2,15 @@ package br.com.surb.surb.modules.enrollment.infra.entities;
 
 import static java.lang.Boolean.TRUE;
 
+import br.com.surb.surb.modules.lesson.infra.entities.Lesson;
 import br.com.surb.surb.modules.offer.infra.entities.Offer;
 import br.com.surb.surb.modules.user.infra.jpa.entities.User;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "tb_enrollment")
@@ -29,6 +32,9 @@ public class Enrollment implements Serializable {
   private Instant updatedAt;
 
   private boolean status;
+
+  @ManyToMany(mappedBy = "enrollmentsDone")
+  private final Set<Lesson> lessonsDone = new HashSet<>();
 
   public Enrollment(){}
 

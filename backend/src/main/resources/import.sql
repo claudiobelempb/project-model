@@ -165,3 +165,23 @@ INSERT INTO tb_section (title, description, position, img_Uri, resource_id, prer
 --tb_enrolment
 INSERT INTO tb_enrollment (user_id, offer_id, enroll_moment, refund_moment, available, only_update, created_at, status) VALUES (1, 1, '2020-11-20T13:00:00Z', null, 'true', 'false', NOW(), 'true');
 INSERT INTO tb_enrollment (user_id, offer_id, enroll_moment, refund_moment, available, only_update, created_at, status) VALUES (2, 1, '2020-11-20T13:00:00Z', null, 'true', 'false', NOW(), 'true');
+
+--tb_lesson
+INSERT INTO tb_lesson (title, position, section_id, created_at, status) VALUES ('Aula 1 do capítulo 1', 1, 1, NOW(), 'true');
+INSERT INTO tb_content (id, text_content, video_uri) VALUES (1, 'Material de apoio: abc', 'https://www.youtube.com/watch?v=sqbqoR-lMf8');
+
+INSERT INTO tb_lesson (title, position, section_id, created_at, status) VALUES ('Aula 2 do capítulo 1', 2, 1, NOW(), 'true');
+INSERT INTO tb_content (id, text_content, video_uri) VALUES (2, 'Material de apoio: abc', 'https://www.youtube.com/watch?v=sqbqoR-lMf8');
+
+INSERT INTO tb_lesson (title, position, section_id, created_at, status) VALUES ('Aula 3 do capítulo 1', 3, 1, NOW(), 'true');
+INSERT INTO tb_content (id, text_content, video_uri) VALUES (3, 'Material de apoio: abc', 'https://www.youtube.com/watch?v=sqbqoR-lMf8');
+
+INSERT INTO tb_lesson (title, position, section_id, created_at, status) VALUES ('Tarefa do capítulo 1', 4, 1, NOW(), 'true');
+INSERT INTO tb_task (id, description, question_count, approval_count, weight, due_date) VALUES (4, 'Fazer um trabalho legal', 5, 4, 1.0, '2020-11-25T13:00:00Z');
+
+INSERT INTO tb_lessons_done (lesson_id, user_id, offer_id) VALUES (1, 1, 1);
+INSERT INTO tb_lessons_done (lesson_id, user_id, offer_id) VALUES (2, 1, 1);
+
+INSERT INTO tb_notification (text, read, route, user_id, created_at, status) VALUES ('Primeiro feedback de tarefa: favor revisar', 'true', '/offers/1/resource/1/sections/1', 1, NOW(), 'true');
+INSERT INTO tb_notification (text, read, route, user_id, created_at, status) VALUES ('Segundo feedback: favor revisar', 'true', '/offers/1/resource/1/sections/1', 1, NOW(), 'true');
+INSERT INTO tb_notification (text, read, route, user_id, created_at, status) VALUES ('Terceiro feedback: favor revisar', 'true', '/offers/1/resource/1/sections/1', 1, NOW(), 'true');

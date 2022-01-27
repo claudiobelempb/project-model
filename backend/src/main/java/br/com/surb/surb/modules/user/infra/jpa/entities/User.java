@@ -1,5 +1,6 @@
 package br.com.surb.surb.modules.user.infra.jpa.entities;
 
+import br.com.surb.surb.modules.notification.infra.entities.Notification;
 import br.com.surb.surb.modules.role.infra.jpa.entities.Role;
 import br.com.surb.surb.shared.enums.TypeStatus;
 import org.springframework.security.core.GrantedAuthority;
@@ -9,10 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.Instant;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Entity
@@ -53,6 +51,9 @@ public class User implements UserDetails, Serializable {
     inverseJoinColumns = @JoinColumn(name = "role_id")
   )
   private final Set<Role> roles = new HashSet<>();
+
+  @OneToMany(mappedBy = "user")
+  private final List<Notification> notifications = new ArrayList<>();
 
   public User(){}
 
@@ -106,7 +107,9 @@ public class User implements UserDetails, Serializable {
     this.password = password;
   }
 
-  public void setEmail(String email) {this.email = email;}
+  public void setEmail(String email) {
+    this.email = email;
+  }
 
   public Instant getCreatedAt() {
     return createdAt;
@@ -134,6 +137,10 @@ public class User implements UserDetails, Serializable {
 
   public Set<Role> getRoles() {
     return roles;
+  }
+
+  public List<Notification> getNotifications() {
+    return notifications;
   }
 
   @PrePersist
