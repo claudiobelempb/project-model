@@ -5,7 +5,7 @@ import static br.com.surb.surb.shared.constants.ValidatorConstants.REQUIRED_EMAI
 import br.com.surb.surb.modules.user.dto.UserUpdateDTO;
 import br.com.surb.surb.modules.user.infra.jpa.entities.User;
 import br.com.surb.surb.modules.user.infra.jpa.repositories.UserRepository;
-import br.com.surb.surb.shared.exeptions.controllers.FieldMessage;
+import br.com.surb.surb.shared.exeptions.resources.FieldMessage;
 import org.springframework.web.servlet.HandlerMapping;
 
 import javax.servlet.http.HttpServletRequest;

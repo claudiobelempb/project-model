@@ -1,6 +1,6 @@
 package br.com.surb.surb.shared.config;
 
-import br.com.surb.surb.modules.user.useCases.UserFindByEmail.UserFindByInfoService;
+import br.com.surb.surb.modules.user.useCases.AppUserDetailsService.AppUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
@@ -23,19 +23,19 @@ import java.util.Arrays;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
   private final BCryptPasswordEncoder passwordEncoder;
-  private final UserFindByInfoService userFindByUserService;
+  private final AppUserDetailsService appUserDetailsService;
   private final Environment environment;
 
-  public WebSecurityConfig(BCryptPasswordEncoder passwordEncoder, UserFindByInfoService userFindByEmailService,
+  public WebSecurityConfig(BCryptPasswordEncoder passwordEncoder, AppUserDetailsService appUserDetailsService,
                            Environment environment){
     this.passwordEncoder = passwordEncoder;
-    this.userFindByUserService = userFindByEmailService;
+    this.appUserDetailsService = appUserDetailsService;
     this.environment = environment;
   }
 
   @Override
   protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-    auth.userDetailsService(userFindByUserService).passwordEncoder(passwordEncoder);
+    auth.userDetailsService(appUserDetailsService).passwordEncoder(passwordEncoder);
   }
 
   @Override

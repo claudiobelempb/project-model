@@ -1,6 +1,6 @@
 package br.com.surb.surb.shared.util.validator;
 
-import br.com.surb.surb.shared.exeptions.controllers.FieldMessage;
+import br.com.surb.surb.shared.exeptions.resources.FieldMessage;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;

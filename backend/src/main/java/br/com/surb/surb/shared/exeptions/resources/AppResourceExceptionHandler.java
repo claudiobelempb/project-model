@@ -1,4 +1,4 @@
-package br.com.surb.surb.shared.exeptions.controllers;
+package br.com.surb.surb.shared.exeptions.resources;
 
 import br.com.surb.surb.shared.exeptions.services.AppNotFoundException;
 import br.com.surb.surb.shared.exeptions.services.DataBaseException;
@@ -16,7 +16,7 @@ import java.io.Serializable;
 import java.time.Instant;
 
 @ControllerAdvice
-public class AppControllerExceptionHandler implements Serializable {
+public class AppResourceExceptionHandler implements Serializable {
   private static final long serialVersionUID = 1L;
   private final StandarError error = new StandarError();
 

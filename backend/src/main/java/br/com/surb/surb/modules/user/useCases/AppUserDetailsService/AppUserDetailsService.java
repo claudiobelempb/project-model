@@ -1,4 +1,4 @@
-package br.com.surb.surb.modules.user.useCases.UserFindByEmail;
+package br.com.surb.surb.modules.user.useCases.AppUserDetailsService;
 
 import br.com.surb.surb.modules.user.infra.jpa.entities.User;
 import br.com.surb.surb.modules.user.infra.jpa.repositories.UserRepository;
@@ -11,11 +11,11 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
-public record UserFindByInfoService(
+public record AppUserDetailsService(
   UserRepository userRepository) implements UserDetailsService {
 
 
-  private static final Logger logger = LoggerFactory.getLogger(UserFindByInfoService.class);
+  private static final Logger logger = LoggerFactory.getLogger(AppUserDetailsService.class);
 
   @Override
   public UserDetails loadUserByUsername(String usernameEmail) throws UsernameNotFoundException {

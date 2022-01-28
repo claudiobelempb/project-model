@@ -1,4 +1,4 @@
-package br.com.surb.surb.shared.exeptions.controllers;
+package br.com.surb.surb.shared.exeptions.resources;
 
 import java.util.ArrayList;
 import java.util.List;
