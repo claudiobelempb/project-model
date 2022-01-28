@@ -182,6 +182,24 @@ INSERT INTO tb_task (id, description, question_count, approval_count, weight, du
 INSERT INTO tb_lessons_done (lesson_id, user_id, offer_id) VALUES (1, 1, 1);
 INSERT INTO tb_lessons_done (lesson_id, user_id, offer_id) VALUES (2, 1, 1);
 
+--tb_notification
 INSERT INTO tb_notification (text, read, route, user_id, created_at, status) VALUES ('Primeiro feedback de tarefa: favor revisar', 'true', '/offers/1/resource/1/sections/1', 1, NOW(), 'true');
 INSERT INTO tb_notification (text, read, route, user_id, created_at, status) VALUES ('Segundo feedback: favor revisar', 'true', '/offers/1/resource/1/sections/1', 1, NOW(), 'true');
 INSERT INTO tb_notification (text, read, route, user_id, created_at, status) VALUES ('Terceiro feedback: favor revisar', 'true', '/offers/1/resource/1/sections/1', 1, NOW(), 'true');
+
+INSERT INTO tb_deliver (uri, feedback, correct_Count, lesson_id, user_id, offer_id, created_at, status_deliver, status) VALUES ('https://github.com/devsuperior/bds-dslearn', 0, null, 4, 1, 1, NOW(), 0, 'true');
+
+INSERT INTO tb_topic (title, body, author_id, offer_id, lesson_id, created_at, status) VALUES ('Título do tópico 1', 'Corpo do tópico 1', 1, 1, 1, NOW(), 'true');
+INSERT INTO tb_topic (title, body, author_id, offer_id, lesson_id, created_at, status) VALUES ('Título do tópico 2', 'Corpo do tópico 2', 2, 1, 1, NOW(), 'true');
+INSERT INTO tb_topic (title, body, author_id, offer_id, lesson_id, created_at, status) VALUES ('Título do tópico 3', 'Corpo do tópico 3', 2, 1, 1, NOW(), 'true');
+INSERT INTO tb_topic (title, body, author_id, offer_id, lesson_id, created_at, status) VALUES ('Título do tópico 4', 'Corpo do tópico 4', 1, 1, 2, NOW(), 'true');
+INSERT INTO tb_topic (title, body, author_id, offer_id, lesson_id, created_at, status) VALUES ('Título do tópico 5', 'Corpo do tópico 5', 1, 1, 2, NOW(), 'true');
+INSERT INTO tb_topic (title, body, author_id, offer_id, lesson_id, created_at, status) VALUES ('Título do tópico 6', 'Corpo do tópico 6', 2, 1, 3, NOW(), 'true');
+
+INSERT INTO tb_topic_likes (topic_id, user_id) VALUES (1, 2);
+INSERT INTO tb_topic_likes (topic_id, user_id) VALUES (2, 1);
+
+INSERT INTO tb_reply (body, topic_id, author_id, created_at, status) VALUES ('Tente reiniciar o computador', 1, 2, NOW(), 'true');
+INSERT INTO tb_reply (body, topic_id, author_id, created_at, status) VALUES ('Deu certo, valeu!', 1, 1, NOW(), 'true');
+
+INSERT INTO tb_reply_likes (reply_id, user_id) VALUES (1, 1);

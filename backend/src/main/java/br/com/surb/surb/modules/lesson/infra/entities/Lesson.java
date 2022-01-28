@@ -1,14 +1,13 @@
 package br.com.surb.surb.modules.lesson.infra.entities;
 
+import br.com.surb.surb.modules.deliver.infra.entities.Deliver;
 import br.com.surb.surb.modules.enrollment.infra.entities.Enrollment;
 import br.com.surb.surb.modules.section.infra.entities.Section;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.Instant;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "tb_lesson")
@@ -45,6 +44,9 @@ public abstract class Lesson implements Serializable {
     }
   )
   private final Set<Enrollment> enrollmentsDone = new HashSet<>();
+
+  @OneToMany(mappedBy = "lesson")
+  private final List<Deliver> deliveries = new ArrayList<>();
 
   public Lesson(){}
 
@@ -113,6 +115,10 @@ public abstract class Lesson implements Serializable {
 
   public void setSection(Section section) {
     this.section = section;
+  }
+
+  public List<Deliver> getDeliveries() {
+    return deliveries;
   }
 
   @PrePersist
