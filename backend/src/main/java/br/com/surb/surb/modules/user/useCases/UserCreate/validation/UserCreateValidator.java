@@ -5,7 +5,7 @@ import static br.com.surb.surb.shared.constants.ValidatorConstants.REQUIRED_EMAI
 import br.com.surb.surb.modules.user.dto.UserCreateDTO;
 import br.com.surb.surb.modules.user.infra.jpa.entities.User;
 import br.com.surb.surb.modules.user.infra.jpa.repositories.UserRepository;
-import br.com.surb.surb.shared.exeptions.resources.FieldMessage;
+import br.com.surb.surb.shared.exeptions.resources.AppFieldMessage;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
@@ -27,16 +27,16 @@ public class UserCreateValidator implements ConstraintValidator<UserCreateValid,
   @Override
   public boolean isValid(UserCreateDTO userCreateDTO, ConstraintValidatorContext context) {
 
-    List<FieldMessage> list = new ArrayList<>();
+    List<AppFieldMessage> list = new ArrayList<>();
 
-    // Coloque aqui seus testes de validação, acrescentando objetos FieldMessage à lista
+    // Coloque aqui seus testes de validação, acrescentando objetos AppFieldMessage à lista
     User userEmail = userRepository.findByEmail(userCreateDTO.getEmail());
     if(userEmail != null){
-      list.add(new FieldMessage("email", REQUIRED_EMAIL_EXIST));
+      list.add(new AppFieldMessage("email", REQUIRED_EMAIL_EXIST));
     }
 
 
-    for (FieldMessage error : list) {
+    for (AppFieldMessage error : list) {
       context.disableDefaultConstraintViolation();
       context.buildConstraintViolationWithTemplate(error.getMessage()).addPropertyNode(error.getFieldName())
         .addConstraintViolation();

@@ -1,9 +1,9 @@
 package br.com.surb.surb.shared.exeptions.resources;
 
 import br.com.surb.surb.shared.exeptions.services.AppNotFoundException;
-import br.com.surb.surb.shared.exeptions.services.DataBaseException;
-import br.com.surb.surb.shared.exeptions.services.ForbiddenException;
-import br.com.surb.surb.shared.exeptions.services.UnauthorizedException;
+import br.com.surb.surb.shared.exeptions.services.AppDataBaseException;
+import br.com.surb.surb.shared.exeptions.services.AppForbiddenException;
+import br.com.surb.surb.shared.exeptions.services.AppUnauthorizedException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -18,13 +18,13 @@ import java.time.Instant;
 @ControllerAdvice
 public class AppResourceExceptionHandler implements Serializable {
   private static final long serialVersionUID = 1L;
-  private final StandarError error = new StandarError();
+  private final AppStandarError error = new AppStandarError();
 
   @ExceptionHandler(AppNotFoundException.class)
-  public ResponseEntity<StandarError> entityNotFound(
+  public ResponseEntity<AppStandarError> entityNotFound(
     AppNotFoundException e, HttpServletRequest request) {
     HttpStatus status = HttpStatus.NOT_FOUND;
-    StandarError err = new StandarError();
+    AppStandarError err = new AppStandarError();
     err.setTimestamp(Instant.now());
     err.setStatus(status.value());
     err.setError("Resource not found");
@@ -33,10 +33,10 @@ public class AppResourceExceptionHandler implements Serializable {
     return ResponseEntity.status(status).body(err);
   }
 
-  @ExceptionHandler(DataBaseException.class)
-  public ResponseEntity<StandarError> database(DataBaseException e, HttpServletRequest request) {
+  @ExceptionHandler(AppDataBaseException.class)
+  public ResponseEntity<AppStandarError> database(AppDataBaseException e, HttpServletRequest request) {
     HttpStatus status = HttpStatus.BAD_REQUEST;
-    StandarError err = new StandarError();
+    AppStandarError err = new AppStandarError();
     err.setTimestamp(Instant.now());
     err.setStatus(status.value());
     err.setError("Database exception");
@@ -46,10 +46,10 @@ public class AppResourceExceptionHandler implements Serializable {
   }
 
   @ExceptionHandler(MethodArgumentNotValidException.class)
-  public ResponseEntity<ValidationError> validation(
+  public ResponseEntity<AppValidationErrorApp> validation(
     MethodArgumentNotValidException e, HttpServletRequest request) {
     HttpStatus status = HttpStatus.UNPROCESSABLE_ENTITY;
-    ValidationError err = new ValidationError();
+    AppValidationErrorApp err = new AppValidationErrorApp();
     err.setTimestamp(Instant.now());
     err.setStatus(status.value());
     err.setError("Validation exception");
@@ -63,18 +63,18 @@ public class AppResourceExceptionHandler implements Serializable {
     return ResponseEntity.status(status).body(err);
   }
 
-  @ExceptionHandler(ForbiddenException.class)
-  public ResponseEntity<OAuthCustomError> forbidden(ForbiddenException e, HttpServletRequest request) {
-    OAuthCustomError customError = new OAuthCustomError("Forbidden", e.getMessage());
-    return ResponseEntity.status(HttpStatus.FORBIDDEN).body(customError);
+  @ExceptionHandler(AppForbiddenException.class)
+  public ResponseEntity<AppOAuthCustomError> forbidden(AppForbiddenException e, HttpServletRequest request) {
+    HttpStatus status = HttpStatus.FORBIDDEN;
+    AppOAuthCustomError customError = new AppOAuthCustomError("Forbidden", e.getMessage());
+    return ResponseEntity.status(status).body(customError);
   }
 
-  @ExceptionHandler(UnauthorizedException.class)
-  public ResponseEntity<OAuthCustomError> unauthorized(UnauthorizedException e, HttpServletRequest request) {
-    OAuthCustomError customError = new OAuthCustomError("Unauthorized", e.getMessage());
-    return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(customError);
+  @ExceptionHandler(AppUnauthorizedException.class)
+  public ResponseEntity<AppOAuthCustomError> unauthorized(AppUnauthorizedException e, HttpServletRequest request) {
+    HttpStatus status = HttpStatus.UNAUTHORIZED;
+    AppOAuthCustomError customError = new AppOAuthCustomError("Unauthorized", e.getMessage());
+    return ResponseEntity.status(status).body(customError);
   }
-
-
 
 }

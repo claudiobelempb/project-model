@@ -3,18 +3,18 @@ package br.com.surb.surb.shared.exeptions.resources;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ValidationError extends StandarError {
+public class AppValidationErrorApp extends AppStandarError {
 
   private static final long serialVersionUID = 1L;
 
-  private final List<FieldMessage> errors = new ArrayList<>();
+  private final List<AppFieldMessage> errors = new ArrayList<>();
 
-  public List<FieldMessage> getErrors() {
+  public List<AppFieldMessage> getErrors() {
     return errors;
   }
 
   public void addError(String fieldName, String message) {
-    errors.add(new FieldMessage(fieldName, message));
+    errors.add(new AppFieldMessage(fieldName, message));
   }
 
 }

@@ -4,7 +4,7 @@ import static br.com.surb.surb.shared.constants.ValidatorConstants.*;
 import static java.util.Objects.isNull;
 import static org.apache.logging.log4j.util.Strings.isBlank;
 
-import br.com.surb.surb.shared.exeptions.services.InvalidRequestException;
+import br.com.surb.surb.shared.exeptions.services.AppInvalidRequestException;
 import br.com.surb.surb.shared.validator.ValidationErrors;
 
 public final class ValidatorUtils {
@@ -13,7 +13,7 @@ public final class ValidatorUtils {
 
   public static void throwOnError(ValidationErrors validationErrors) {
     if(validationErrors.hasErrors()){
-      throw new InvalidRequestException(validationErrors);
+      throw new AppInvalidRequestException(validationErrors);
     }
   }
 

@@ -1,6 +1,6 @@
 package br.com.surb.surb.shared.util.validator;
 
-import br.com.surb.surb.shared.exeptions.resources.FieldMessage;
+import br.com.surb.surb.shared.exeptions.resources.AppFieldMessage;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
@@ -18,11 +18,11 @@ public class UtilValidator implements ConstraintValidator<UtilValid, UtilValidat
   @Override
   public boolean isValid(UtilValidator validator, ConstraintValidatorContext context) {
 
-    List<FieldMessage> list = new ArrayList<>();
+    List<AppFieldMessage> list = new ArrayList<>();
 
-    // Coloque aqui seus testes de validação, acrescentando objetos FieldMessage à lista
+    // Coloque aqui seus testes de validação, acrescentando objetos AppFieldMessage à lista
 
-    for (FieldMessage e : list) {
+    for (AppFieldMessage e : list) {
       context.disableDefaultConstraintViolation();
       context.buildConstraintViolationWithTemplate(e.getMessage()).addPropertyNode(e.getFieldName())
         .addConstraintViolation();

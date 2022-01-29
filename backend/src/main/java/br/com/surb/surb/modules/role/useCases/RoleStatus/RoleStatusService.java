@@ -5,8 +5,6 @@ import static br.com.surb.surb.shared.constants.ExceptionConstants.*;
 import br.com.surb.surb.modules.role.dto.RoleUpdateDTO;
 import br.com.surb.surb.modules.role.infra.jpa.entities.Role;
 import br.com.surb.surb.modules.role.infra.jpa.repositories.RoleRepository;
-import br.com.surb.surb.shared.constants.ExceptionConstants;
-import br.com.surb.surb.shared.constants.MessageConstants;
 import br.com.surb.surb.shared.exeptions.services.AppNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.io.Serializable;
 
-public class OAuthCustomError implements Serializable {
+public class AppOAuthCustomError implements Serializable {
   private static final long serialVersionUID = 1L;
 
   private String error;
@@ -12,9 +12,9 @@ public class OAuthCustomError implements Serializable {
   @JsonProperty("error_description")
   private String errorDescription;
 
-  public OAuthCustomError(){}
+  public AppOAuthCustomError(){}
 
-  public OAuthCustomError(String error, String errorDescription) {
+  public AppOAuthCustomError(String error, String errorDescription) {
     this.error = error;
     this.errorDescription = errorDescription;
   }

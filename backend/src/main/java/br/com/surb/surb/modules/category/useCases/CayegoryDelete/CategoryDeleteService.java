@@ -2,7 +2,7 @@ package br.com.surb.surb.modules.category.useCases.CayegoryDelete;
 
 import br.com.surb.surb.modules.category.infra.jpa.repositories.CategoryRepository;
 import br.com.surb.surb.shared.exeptions.services.AppNotFoundException;
-import br.com.surb.surb.shared.exeptions.services.DataBaseException;
+import br.com.surb.surb.shared.exeptions.services.AppDataBaseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -20,7 +20,7 @@ public class CategoryDeleteService {
     } catch (EmptyResultDataAccessException e){
       throw new AppNotFoundException("Id not found" + id);
     } catch (DataIntegrityViolationException e) {
-      throw new DataBaseException("Integrity violation");
+      throw new AppDataBaseException("Integrity violation");
     }
   }
 

@@ -2,11 +2,11 @@ package br.com.surb.surb.shared.exeptions.services;
 
 import br.com.surb.surb.shared.validator.ValidationErrors;
 
-public class InvalidRequestException extends RuntimeException {
+public class AppInvalidRequestException extends RuntimeException {
 
   private final ValidationErrors validationErrors;
 
-  public InvalidRequestException(ValidationErrors validationErrors) {
+  public AppInvalidRequestException(ValidationErrors validationErrors) {
     super(validationErrors.toString());
     this.validationErrors = validationErrors;
   }

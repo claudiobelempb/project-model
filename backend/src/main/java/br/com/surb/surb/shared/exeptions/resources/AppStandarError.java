@@ -3,7 +3,7 @@ package br.com.surb.surb.shared.exeptions.resources;
 import java.io.Serializable;
 import java.time.Instant;
 
-public class StandarError implements Serializable {
+public class AppStandarError implements Serializable {
 
   private static final long serialVersionUID = 1L;
   private Instant timestamp;
@@ -12,7 +12,7 @@ public class StandarError implements Serializable {
   private String message;
   private String path;
 
-  public StandarError() {}
+  public AppStandarError() {}
 
   public Instant getTimestamp() {
     return timestamp;
