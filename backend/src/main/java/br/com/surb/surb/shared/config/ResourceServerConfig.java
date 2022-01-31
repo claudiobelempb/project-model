@@ -2,6 +2,7 @@ package br.com.surb.surb.shared.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
@@ -27,67 +28,69 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     "/h2-console/**",
   };
 
-//  private static final String[] PERMISSION_GET = {
-//    "/api/products/**",
-//    "/api/categories/**",
-//    "/api/movies/**",
-//    "/api/scores/**",
-//    "/api/departments/**",
-//    "/api/employees/**",
-//    "/api/roles/**",
-//  };
-//
-//  private static final String[] PERMISSION_POST = {
-//    "/api/products/**",
-//    "/api/categories/**",
-//    "/api/movies/**",
-//    "/api/scores/**",
-//    "/api/departments/**",
-//    "/api/employees/**",
-//    "/api/roles/**",
-//  };
-//
-//  private static final String[] PERMISSION_PUT = {
-//    "/api/products/**",
-//    "/api/categories/**",
-//    "/api/movies/**",
-//    "/api/scores/**",
-//    "/api/departments/**",
-//    "/api/employees/**",
-//    "/api/roles/**",
-//  };
-//
-//  private static final String[] PERMISSION_DELETE = {
-//    "/api/products/**",
-//    "/api/categories/**",
-//    "/api/movies/**",
-//    "/api/scores/**",
-//    "/api/departments/**",
-//    "/api/employees/**",
-//    "/api/roles/**",
-//  };
-//
-//  private static final String[] PERMISSION_PATCH = {
-//    "/api/products/**",
-//    "/api/categories/**",
-//    "/api/movies/**",
-//    "/api/scores/**",
-//    "/api/departments/**",
-//    "/api/employees/**",
-//    "/api/roles/**",
-//  };
+  private static final String[] PERMISSION_GET = {
+    "/api/users/**",
+    "/api/products/**",
+    "/api/categories/**",
+    "/api/movies/**",
+    "/api/scores/**",
+    "/api/departments/**",
+    "/api/employees/**",
+    "/api/roles/**",
+  };
 
-//  private static final String[] OPERATOR_OR_ADMIN = {
-//    "/api/products/**",
-//    "/api/categories/**",
-//    "/api/movies/**",
-//    "/api/scores/**",
-//    "/api/departments/**",
-//    "/api/employees/**",
-//  };
+  private static final String[] PERMISSION_POST = {
+    "/api/products",
+    "/api/categories",
+    "/api/movies/**",
+    "/api/scores/**",
+    "/api/departments/**",
+    "/api/employees/**",
+    "/api/roles/**",
+  };
+
+  private static final String[] PERMISSION_PUT = {
+    "/api/products/**",
+    "/api/categories/**",
+    "/api/movies/**",
+    "/api/scores/**",
+    "/api/departments/**",
+    "/api/employees/**",
+    "/api/roles/**",
+  };
+
+  private static final String[] PERMISSION_DELETE = {
+    "/api/products/**",
+    "/api/categories/**",
+    "/api/movies/**",
+    "/api/scores/**",
+    "/api/departments/**",
+    "/api/employees/**",
+    "/api/roles/**",
+  };
+
+  private static final String[] PERMISSION_PATCH = {
+    "/api/products/status/**",
+    "/api/categories/status/**",
+    "/api/movies/status/**",
+    "/api/scores/status/**",
+    "/api/departments/status/**",
+    "/api/employees/status/**",
+    "/api/roles/status/**",
+  };
+
+  private static final String[] USER_OR_ADMIN = {
+    "/api/user/notifications"
+  };
+
+  private static final String[] ADMIN = {
+    "/api/users/**",
+    "/api/notifications"
+  };
 
 //  private static final String[] ADMIN = {
-//    "/api/users/**"
+//    "/api/users/notifications",
+//    "/api/users/status"
 //  };
 
   @Override
@@ -105,15 +108,16 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
     http.authorizeRequests()
       .antMatchers(PUBLIC).permitAll()
-//      .antMatchers(HttpMethod.GET, OPERATOR_OR_ADMIN).permitAll()
+      .antMatchers(HttpMethod.GET, USER_OR_ADMIN).permitAll()
 //      .antMatchers(OPERATOR_OR_ADMIN).hasAnyRole("OPERATOR", "ADMIN")
-//      .antMatchers(HttpMethod.GET, PERMISSION_GET).hasAnyRole("OPERATOR", "ADMIN")
-//      .antMatchers(HttpMethod.POST, PERMISSION_POST).hasAnyRole("ADMIN")
-//      .antMatchers(HttpMethod.PUT, PERMISSION_PUT).hasAnyRole("ADMIN")
-//      .antMatchers(HttpMethod.DELETE, PERMISSION_DELETE).hasAnyRole("ADMIN")
-//      .antMatchers(HttpMethod.PATCH, PERMISSION_PATCH).hasAnyRole("ADMIN")
-//      .antMatchers(ADMIN).hasRole("ADMIN")
+      .antMatchers(HttpMethod.GET, PERMISSION_GET).hasAnyRole("OPERATOR", "STUDENT", "INSTRUCTOR", "ADMIN")
+      .antMatchers(HttpMethod.POST, PERMISSION_POST).hasAnyRole("ADMIN")
+      .antMatchers(HttpMethod.PUT, PERMISSION_PUT).hasAnyRole("ADMIN")
+      .antMatchers(HttpMethod.DELETE, PERMISSION_DELETE).hasAnyRole("ADMIN")
+      .antMatchers(HttpMethod.PATCH, PERMISSION_PATCH).hasAnyRole("ADMIN")
+      .antMatchers(ADMIN).hasRole("ADMIN")
+//      .anyRequest().hasAnyRole("ADMIN")
       .anyRequest().authenticated();
-//      .anyRequest().hasAnyRole("ADMIN");
+
   }
 }

@@ -1,5 +1,6 @@
 package br.com.surb.surb.shared.config;
 
+import br.com.surb.surb.modules.user.useCases.AppUserDetailsService.AppUserDetailsService;
 import br.com.surb.surb.shared.components.JwtTokenEnhancer;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
@@ -35,15 +36,22 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
   private final AuthenticationManager authenticationManager;
   private final JwtTokenEnhancer tokenEnhancer;
 
-  public AuthorizationServerConfig(BCryptPasswordEncoder passwordEncoder,
-                                   JwtAccessTokenConverter accessTokenConverter, JwtTokenStore tokenStore,
-                                   AuthenticationManager authenticationManager, JwtTokenEnhancer tokenEnhancer){
+  private AppUserDetailsService appUserDetailsService;
+
+  public AuthorizationServerConfig(
+    BCryptPasswordEncoder passwordEncoder,
+    JwtAccessTokenConverter accessTokenConverter,
+    JwtTokenStore tokenStore,
+    AuthenticationManager authenticationManager,
+    JwtTokenEnhancer tokenEnhancer,
+    AppUserDetailsService appUserDetailsService
+  ){
     this.passwordEncoder = passwordEncoder;
     this.accessTokenConverter = accessTokenConverter;
     this.tokenStore = tokenStore;
     this.authenticationManager = authenticationManager;
     this.tokenEnhancer = tokenEnhancer;
-
+    this.appUserDetailsService = appUserDetailsService;
   }
 
   @Override
@@ -57,8 +65,9 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
       .withClient(clientId)
       .secret(passwordEncoder.encode(clientSecret))
       .scopes("read", "write")
-      .authorizedGrantTypes("password")
-      .accessTokenValiditySeconds(jwtDuration);
+      .authorizedGrantTypes("password", "refresh_token")
+      .accessTokenValiditySeconds(jwtDuration)
+      .refreshTokenValiditySeconds(jwtDuration);
   }
 
   @Override
@@ -70,6 +79,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     endpoints.authenticationManager(authenticationManager)
       .tokenStore(tokenStore)
       .accessTokenConverter(accessTokenConverter)
-      .tokenEnhancer(enhancerChain);
+      .tokenEnhancer(enhancerChain)
+      .userDetailsService(appUserDetailsService);
   }
 }
