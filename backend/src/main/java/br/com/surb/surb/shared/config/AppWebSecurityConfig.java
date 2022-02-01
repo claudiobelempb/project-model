@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -20,14 +21,15 @@ import java.util.Arrays;
 
 @Configuration
 @EnableWebSecurity
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+@EnableGlobalMethodSecurity(prePostEnabled = true)
+public class AppWebSecurityConfig extends WebSecurityConfigurerAdapter {
 
   private final BCryptPasswordEncoder passwordEncoder;
   private final AppUserDetailsService appUserDetailsService;
   private final Environment environment;
 
-  public WebSecurityConfig(BCryptPasswordEncoder passwordEncoder, AppUserDetailsService appUserDetailsService,
-                           Environment environment){
+  public AppWebSecurityConfig(BCryptPasswordEncoder passwordEncoder, AppUserDetailsService appUserDetailsService,
+                              Environment environment){
     this.passwordEncoder = passwordEncoder;
     this.appUserDetailsService = appUserDetailsService;
     this.environment = environment;

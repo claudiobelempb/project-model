@@ -13,17 +13,17 @@ import java.util.Arrays;
 
 @Configuration
 @EnableResourceServer
-public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
+public class AppResourceServerConfig extends ResourceServerConfigurerAdapter {
 
   private final Environment environment;
   private final JwtTokenStore tokenStore;
 
-  public ResourceServerConfig(Environment environment, JwtTokenStore tokenStore){
+  public AppResourceServerConfig(Environment environment, JwtTokenStore tokenStore){
     this.environment = environment;
     this.tokenStore = tokenStore;
   }
 
-  private static final String[] PUBLIC = {
+  private static final String[] PERMISSION_PUBLIC = {
     "/oauth/token",
     "/h2-console/**",
   };
@@ -83,7 +83,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     "/api/user/notifications"
   };
 
-  private static final String[] ADMIN = {
+  private static final String[] PERMISSION_ADMIN = {
     "/api/users/**",
     "/api/notifications"
   };
@@ -107,7 +107,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     }
 
     http.authorizeRequests()
-      .antMatchers(PUBLIC).permitAll()
+      .antMatchers(PERMISSION_PUBLIC).permitAll()
       .antMatchers(HttpMethod.GET, USER_OR_ADMIN).permitAll()
 //      .antMatchers(OPERATOR_OR_ADMIN).hasAnyRole("OPERATOR", "ADMIN")
       .antMatchers(HttpMethod.GET, PERMISSION_GET).hasAnyRole("OPERATOR", "STUDENT", "INSTRUCTOR", "ADMIN")
@@ -115,7 +115,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
       .antMatchers(HttpMethod.PUT, PERMISSION_PUT).hasAnyRole("ADMIN")
       .antMatchers(HttpMethod.DELETE, PERMISSION_DELETE).hasAnyRole("ADMIN")
       .antMatchers(HttpMethod.PATCH, PERMISSION_PATCH).hasAnyRole("ADMIN")
-      .antMatchers(ADMIN).hasRole("ADMIN")
+      .antMatchers(PERMISSION_ADMIN).hasRole("ADMIN")
 //      .anyRequest().hasAnyRole("ADMIN")
       .anyRequest().authenticated();
 

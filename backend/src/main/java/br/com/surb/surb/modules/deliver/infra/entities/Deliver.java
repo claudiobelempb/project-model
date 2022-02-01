@@ -141,8 +141,8 @@ public class Deliver implements Serializable {
   @PrePersist
   public void prePersist(){
     createdAt = Instant.now();
-    status = Boolean.TRUE;
     statusDeliver = TypeDeliver.PENDING;
+    status = Boolean.TRUE;
   }
 
   @PreUpdate

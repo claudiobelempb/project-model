@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Component
-public class JwtTokenEnhancer implements TokenEnhancer {
+public class AppJwtTokenEnhancer implements TokenEnhancer {
 
   @Autowired
   private UserRepository userRepository;

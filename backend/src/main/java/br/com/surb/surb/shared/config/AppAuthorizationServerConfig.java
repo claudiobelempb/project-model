@@ -1,7 +1,7 @@
 package br.com.surb.surb.shared.config;
 
 import br.com.surb.surb.modules.user.useCases.AppUserDetailsService.AppUserDetailsService;
-import br.com.surb.surb.shared.components.JwtTokenEnhancer;
+import br.com.surb.surb.shared.components.AppJwtTokenEnhancer;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -19,7 +19,7 @@ import java.util.Arrays;
 
 @Configuration
 @EnableAuthorizationServer
-public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
+public class AppAuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
 
   @Value("${security.oauth2.client.client-id}")
   private String clientId;
@@ -34,16 +34,16 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
   private final JwtAccessTokenConverter accessTokenConverter;
   private final JwtTokenStore tokenStore;
   private final AuthenticationManager authenticationManager;
-  private final JwtTokenEnhancer tokenEnhancer;
+  private final AppJwtTokenEnhancer tokenEnhancer;
 
-  private AppUserDetailsService appUserDetailsService;
+  private final AppUserDetailsService appUserDetailsService;
 
-  public AuthorizationServerConfig(
+  public AppAuthorizationServerConfig(
     BCryptPasswordEncoder passwordEncoder,
     JwtAccessTokenConverter accessTokenConverter,
     JwtTokenStore tokenStore,
     AuthenticationManager authenticationManager,
-    JwtTokenEnhancer tokenEnhancer,
+    AppJwtTokenEnhancer tokenEnhancer,
     AppUserDetailsService appUserDetailsService
   ){
     this.passwordEncoder = passwordEncoder;
